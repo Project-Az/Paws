@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta charset="UTF-8">
+	<title>Paws Alterar Cadastro</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" href="css/cadastro.css">
+	
+</head>
+
+<body>
+<?php
+include("conexao.php");
+include("genero.php");
+$generos = listaGenero($conexao)
+?>
+<div class="topnav" id="myTopnav">
+  <a href="HomePage.html">Home</a>
+  <a href="index.html">Login</a>
+  <a href="#contact">Contact</a>
+  <a href="perfilPet.html">Meu Pet</a>
+  <a href="cadastropet.html">Cadastro Pet</a>
+</div>  
+
+<div class="container">
+	<div class="info">
+		<h1>Cadastro Pet<h1>
+	<div class="form">
+		<form class="register-form">
+		<form action="cadapet.php" method="post">	
+			<input type="text" placeholder="Nome" name="nome"/><br>
+			<br>
+			Idade:<br>
+			<input type="date" placeholder="Dia" name="dia"/><br>
+			<br>
+			Gênero:
+			<input type="checkbox" name="gender" id="gender" value="1">Macho
+			<input type="checkbox" name="gender" id="gender" value="2">Fêmea<br>
+			<br>
+			
+			
+			<select  name="porte">
+				<option>Porte</option>
+				<?php	
+				
+					$result_porte = "SELECT * FROM `pet`";
+					$resultado_porte = mysqli_query($con, $result_porte);
+					while ($row_porte = mysqli_fetch($resultado_porte));{?>
+						<option value="<?php echo $row_porte ('id');?>"><?php echo $row_porte ('nome');?>
+						</option><?php
+						}
+				?>
+			</select>
+						
+		
+			<select  name="tipo1">
+				<option value="cachorro">Cachorro</option>
+				<option value="gato">Gato</option>
+			</select>
+			<br><br>
+			<input type="text" placeholder="Raça" name="raca"/><br><br>
+			<input type="file" name="foto"/><br>
+			<br>
+			Tipo de cadastro:<br>
+			<input type="checkbox" name="tipo2" value="Adoção">Adoção
+			<input type="checkbox" name="tipo2" value="Perdido">Perdido<br><br>
+			<input type="submit" name="salvar"/>
+		</form>
+		</form>
+	</div>
+	</div>
+</div>
+
+
+<script>
+  
+</script>
+	
+
+   
+</body>
+</html>
